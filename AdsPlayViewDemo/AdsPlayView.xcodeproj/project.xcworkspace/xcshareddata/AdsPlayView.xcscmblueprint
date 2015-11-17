@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "4EB9E2AFC8629C306F966F0FBB583EDC03F68CDD",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "4EB9E2AFC8629C306F966F0FBB583EDC03F68CDD" : 0,
+    "2ADE6DD5FE3F220904FC8623C0EDE339BC93A3D6" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "6A629AF0-D200-4ED7-9B1D-A3934370F3C5",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "4EB9E2AFC8629C306F966F0FBB583EDC03F68CDD" : "AdsPlayView\/",
+    "2ADE6DD5FE3F220904FC8623C0EDE339BC93A3D6" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "AdsPlayView",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "AdsPlayView.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/broccolii\/LoadingView.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "2ADE6DD5FE3F220904FC8623C0EDE339BC93A3D6"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/broccolii\/AdsPlayView.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4EB9E2AFC8629C306F966F0FBB583EDC03F68CDD"
+    }
+  ]
+}
