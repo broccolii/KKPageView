@@ -1,6 +1,6 @@
 
 ## AdsPlayView
- 一个基于 UICollecionView 实现的轮播图控件
+ 一个基于 `UICollecionView` 实现的轮播图控件
 ## Features
 
 * 图片网络下载是基于 [喵神](https://github.com/onevcat) 写的 [kingfisher](https://github.com/onevcat/Kingfisher)
