@@ -13,7 +13,10 @@
 
 ## CocoaPods
 
-已经提交啦 在等审核~
+```
+use_frameworks!
+pod 'AdsPlayView', '~> 1.0.0'
+```
 
 ## Usage
 
