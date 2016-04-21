@@ -1,6 +1,6 @@
 
 ## AdsPlayView
- 一个基于 `UICollecionView` 实现的轮播图控件
+A carousel view control based `UICollectionView`
 
 ## Requirements
 
