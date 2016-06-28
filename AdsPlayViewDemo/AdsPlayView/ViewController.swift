@@ -18,8 +18,8 @@ class ViewController: UIViewController {
         
         let url1 = NSURL(string: "http://img3.douban.com/view/status/median/public/70479fc48e015ee.jpg")!
         let url2 = NSURL(string: "http://img3.douban.com/view/status/median/public/198a1ad399063b1.jpg")!
-        let url3 = NSURL(string: "http://img4.douban.com/view/status/median/public/a4292c8f3353deb.jpg")!
-        let url4 = NSURL(string: "http://img4.douban.com/view/status/median/public/703f430b2045367.jpg")!
+        let url3 = NSURL(string: "http://img3.douban.com/view/status/median/public/70479fc48e015ee.jpg")!
+        let url4 = NSURL(string: "http://img3.douban.com/view/status/median/public/198a1ad399063b1.jpg")!
         
         let playView = AdsPlayView(frame: rect, placeholderImage: UIImage(named: "placeholder")!, URLArr: [url1, url2, url3, url4])
 //        playView.switchInterval = 2.0

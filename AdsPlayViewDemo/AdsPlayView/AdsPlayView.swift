@@ -18,7 +18,7 @@ class AdsPlayView: UIView {
     /// 轮播间隔时间 默认是 5 秒
     var switchInterval: Double! {
         set {
-            switchTimer = NSTimer.scheduledTimerWithTimeInterval(newValue, target: self, selector: Selector("beganSwitchAnimation"), userInfo: nil, repeats: true)
+            switchTimer = NSTimer.scheduledTimerWithTimeInterval(newValue, target: self, selector: #selector(AdsPlayView.beganSwitchAnimation), userInfo: nil, repeats: true)
             switchTimer.fireDate = NSDate(timeIntervalSinceNow: newValue)
         }
 
