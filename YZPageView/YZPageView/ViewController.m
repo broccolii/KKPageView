@@ -8,9 +8,6 @@
 
 #import "ViewController.h"
 #import "YZPageView.h"
-#import "YZPageViewItem.h"
-#import "YZPageContainerView.h"
-#import "YZPageContainerViewLayout.h"
 
 @interface ViewController ()<YZPageViewDelegate, YZPageViewDataSource>
 
@@ -34,18 +31,16 @@
     [pageView registerClass:[YZPageViewItem class] forCellWithReuseIdentifier:@"YZPageViewItem"];
     pageView.delegate = self;
     pageView.dataSource = self;
-    
-    pageView.itemSize = CGSizeMake(100, 100);
+    pageView.itemSize = CGSizeMake([UIScreen mainScreen].bounds.size.width - 100, 100);
     pageView.leadingSpacing = 20;
     pageView.itemSpacing = 30;
     
     [self.view addSubview:pageView];
-    
 }
 
 #pragma mark - YZPageViewDataSource
 - (NSInteger)numberOfItemsInPageView:(YZPageView *)pageView {
-    return 5;
+    return 10;
 }
 
 - (YZPageViewItem *)pageView:(YZPageView *)pageView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
