@@ -8,12 +8,7 @@
 
 #import "YZPageContainerViewLayout.h"
 #import "YZPageView.h"
-
-@interface YZPageContainerViewLayoutAttributes : UICollectionViewLayoutAttributes
-
-@property (nonatomic, strong) UIView *contentView;
-
-@end
+#import "YZPageTransitionAnimator.h"
 
 @implementation YZPageContainerViewLayoutAttributes
 
@@ -29,7 +24,7 @@
 
 @property (nonatomic, weak) YZPageView *pageView;
 
-// indexPath : YZPageContainerViewLayoutAttributes
+// TODO: [indexPath : YZPageContainerViewLayoutAttributes]
 @property (nonatomic, strong) NSMutableDictionary *layoutAttributesMapping;
 
 @property (nonatomic, assign) NSInteger numberOfItems;
@@ -38,29 +33,31 @@
 @property (nonatomic, assign) CGFloat unitItemWidth;
 
 @property (nonatomic, assign) CGSize itemSize;
-@property (nonatomic, assign) CGFloat itemSpacing;
 @property (nonatomic, assign) CGSize contentSize;
-@property (nonatomic, assign) UIEdgeInsets itemEdgeInsert;
 @property (nonatomic, assign) CGFloat leadingSpacing;
+
+@property (nonatomic, weak, nullable) id<YZPageTransitionAnimator> animator;
 
 @end
 
 @implementation YZPageContainerViewLayout
 
 #pragma mark - 
+// TODO: 屏幕旋转
 
 #pragma mark - Override
 - (void)prepareLayout {
     [self.layoutAttributesMapping removeAllObjects];
     
-    
     self.itemSize = self.pageView.itemSize;
-    self.itemSpacing = self.pageView.itemSpacing;
     self.leadingSpacing = self.pageView.leadingSpacing;
+    self.animator = self.pageView.animator;
+    
+    CGFloat itemSpacing = self.pageView.itemSpacing;
     
     self.numberOfItems = [self.pageView collectionView:self.collectionView numberOfItemsInSection:0];
     self.numberOfSections = [self.pageView numberOfSectionsInCollectionView:self.collectionView];
-    self.unitItemWidth = self.itemSize.width + self.itemSpacing;
+    self.unitItemWidth = self.itemSize.width + itemSpacing;
     
     self.contentSize = ({
         NSInteger allItemsCount = self.numberOfItems * self.numberOfSections;
@@ -73,7 +70,7 @@
         // Leading & trailing spacing
         contentSizeWidth += self.leadingSpacing * 2;
         // all item spacing
-        contentSizeWidth += (allItemsCount - 1) * self.itemSpacing;
+        contentSizeWidth += (allItemsCount - 1) * itemSpacing;
         
         CGFloat contentSizeHeight = self.itemSize.height + self.itemEdgeInsert.top + self.itemEdgeInsert.bottom;
         CGSizeMake(contentSizeWidth, contentSizeHeight);
@@ -89,7 +86,8 @@
     NSMutableArray *resultingAttributes = [NSMutableArray array];
     
     for (NSIndexPath *indexPath in indexPaths) {
-        [resultingAttributes addObject:[self layoutAttributesForItemAtIndexPath:indexPath]];
+        YZPageContainerViewLayoutAttributes *transformLayoutAttributes = [self transformLayoutAttributes: (YZPageContainerViewLayoutAttributes *)[self layoutAttributesForItemAtIndexPath:indexPath]];
+        [resultingAttributes addObject:transformLayoutAttributes];
     }
     return resultingAttributes;
 }
@@ -107,17 +105,30 @@
     return attributes;
 }
 
+- (CGPoint)targetContentOffsetForProposedContentOffset:(CGPoint)proposedContentOffset withScrollingVelocity:(CGPoint)velocity {
+    CGFloat proposedContentOffsetX = ({
+        
+        CGFloat translationX = -[self.collectionView.panGestureRecognizer translationInView:self.collectionView].x;
+        CGFloat offset = round(proposedContentOffset.x/self.unitItemWidth) * self.unitItemWidth;
+        CGFloat minFlippingDistance = MIN(0.5 * self.unitItemWidth, 150);
+        CGFloat originalContentOffsetX = self.collectionView.contentOffset.x - translationX;
+        if (fabs(translationX) <= minFlippingDistance) {
+            if (fabs(velocity.x) >= 0.3 && fabs(proposedContentOffset.x-originalContentOffsetX) <= self.unitItemWidth*0.5) {
+                offset += self.unitItemWidth * (velocity.x) / fabs(velocity.x);
+            }
+        }
+        offset;
+    });
+    return CGPointMake(proposedContentOffsetX, proposedContentOffset.y);
+}
+
 - (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds {
     return YES;
 }
 
 #pragma mark - Private method
 - (NSArray <NSIndexPath *>*)indexPathsOfItemsInRect:(CGRect)rect {
-    // TODO: 测试 0 行的状态 如果没有问题 可以删了这个代码
-    if ([self.collectionView numberOfItemsInSection:0] == 0) {
-        return [NSArray array];
-    }
-    
+
     NSInteger minIndex = MAX((NSInteger)((CGRectGetMinX(rect) - self.leadingSpacing) / self.unitItemWidth), 0);
     NSInteger maxIndex = MIN(ceil((CGRectGetMaxX(rect) - self.leadingSpacing) / self.unitItemWidth), self.numberOfItems * self.numberOfSections);
     
@@ -140,6 +151,20 @@
     return CGRectMake(originX, originY, self.itemSize.width, self.itemSize.height);
 }
 
+- (YZPageContainerViewLayoutAttributes *)transformLayoutAttributes:(YZPageContainerViewLayoutAttributes *)layoutAttributes {
+    CGFloat width = self.collectionView.frame.size.width;
+    CGFloat centerX = width / 2;
+    CGFloat offset = self.collectionView.contentOffset.x;
+    CGFloat itemX = layoutAttributes.center.x - offset;
+    CGFloat position = (itemX - centerX) / width;
+    
+    layoutAttributes.contentView = [self.collectionView cellForItemAtIndexPath:layoutAttributes.indexPath];
+    
+    [self.animator transitionAnimationWithOffsetPercent:position
+                                       layoutAttributes:layoutAttributes];
+    return layoutAttributes;
+}
+
 #pragma mark - Getter
 - (NSMutableDictionary *)layoutAttributesMapping {
     if (!_layoutAttributesMapping) {
@@ -147,19 +172,6 @@
     }
     return _layoutAttributesMapping;
 }
-//- (NSInteger)numberOfItems {
-//    if (!_numberOfItems) {
-//        _numberOfItems = [self.pageView collectionView:self.collectionView numberOfItemsInSection:0];
-//    }
-//    return _numberOfItems;
-//}
-//
-//-(NSInteger)numberOfSections {
-//    if (!_numberOfSections) {
-//        _numberOfSections = [self.pageView numberOfSectionsInCollectionView:self.collectionView];
-//    }
-//    return _numberOfSections;
-//}
 
 - (YZPageView *)pageView {
     if (!_pageView) {
