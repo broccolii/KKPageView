@@ -7,15 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YZPageViewItem.h"
 
 #import "YZPageViewDataSource.h"
 #import "YZPageViewDelegate.h"
+#import "YZPageTransitionAnimator.h"
 
 @class YZPageViewItem, YZPageContainerViewLayout;
 @interface YZPageView : UIView <UICollectionViewDataSource, UICollectionViewDelegate>
 // TODO: 属性 支持 StoryBoard
 @property (nonatomic, weak, nullable) id<YZPageViewDataSource> dataSource;
 @property (nonatomic, weak, nullable) id<YZPageViewDelegate> delegate;
+@property (nonatomic, weak, nullable) id<YZPageTransitionAnimator> animator;
 
 @property (nonatomic, strong, nullable) YZPageContainerViewLayout *containerViewLayout;
 // default: NO

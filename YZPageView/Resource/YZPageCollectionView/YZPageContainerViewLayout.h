@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@interface YZPageContainerViewLayoutAttributes : UICollectionViewLayoutAttributes
+
+@property (nonatomic, strong) UIView *contentView;
+
+@end
+
 @interface YZPageContainerViewLayout : UICollectionViewLayout
 
 @end

@@ -7,7 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "YZPageContainerViewLayout.h"
 
 @protocol YZPageTransitionAnimator <NSObject>
+
+- (void)transitionAnimationWithOffsetPercent:(CGFloat)offSetPersent
+                            layoutAttributes:(YZPageContainerViewLayoutAttributes *)layoutAttributes;
 
 @end
