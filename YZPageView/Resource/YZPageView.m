@@ -20,11 +20,12 @@
 @implementation YZPageView
 
 #pragma mark - Initialize
-- (instancetype)init {
-    self = [super init];
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
     if (!self) {
         return nil;
     }
+    
     [self setupContainerView];
     return self;
 }
@@ -36,15 +37,6 @@
     }
     
     [self setupContainerView];
-    return self;
-}
-
-- (instancetype)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
-    if (!self) {
-        return nil;
-    }
-//    [self setupContainerView];
     return self;
 }
 
@@ -88,7 +80,7 @@
 #pragma mark - Private method
 - (NSInteger)numberOfSections {
     if (self.infinite) {
-        return INT64_MAX / [self numberOfItems];
+        return INT16_MAX / [self numberOfItems];
     }
     
     return 1;

@@ -11,9 +11,30 @@
 @implementation YZPageContainerView
 
 #pragma mark - Initialize
-- (instancetype)init {
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
     if (!self) {
         return nil;
+    }
+    
+    [self setupUIComponent];
+    return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (!self) {
+        return nil;
+    }
+    
+    [self setupUIComponent];
+    return self;
+}
+
+- (instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout {
+    self = [super initWithFrame:frame collectionViewLayout:layout];
+    if (!self) {
+        return self;
     }
     [self setupUIComponent];
     return self;
