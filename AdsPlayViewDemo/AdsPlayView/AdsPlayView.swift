@@ -10,7 +10,7 @@ import UIKit
 import Kingfisher
 
 protocol AdsPlayViewDelegate {
-    func adsPlayView(AdsPlayView: UIView, didSelectItemAtIndexPath indexPath: NSIndexPath)
+    func adsPlayView(_ AdsPlayView: UIView, didSelectItemAtIndexPath indexPath: IndexPath)
 }
 
 class AdsPlayView: UIView {
@@ -18,8 +18,8 @@ class AdsPlayView: UIView {
     /// 轮播间隔时间 默认是 5 秒
     var switchInterval: Double! {
         set {
-            switchTimer = NSTimer.scheduledTimerWithTimeInterval(newValue, target: self, selector: #selector(AdsPlayView.beganSwitchAnimation), userInfo: nil, repeats: true)
-            switchTimer.fireDate = NSDate(timeIntervalSinceNow: newValue)
+            switchTimer = Timer.scheduledTimer(timeInterval: newValue, target: self, selector: #selector(AdsPlayView.beganSwitchAnimation), userInfo: nil, repeats: true)
+            switchTimer.fireDate = Date(timeIntervalSinceNow: newValue)
         }
 
         get {
@@ -27,25 +27,25 @@ class AdsPlayView: UIView {
         }
     }
     
-    private lazy var collectionView: UICollectionView! = {
+    fileprivate lazy var collectionView: UICollectionView! = {
         
         let layout = UICollectionViewFlowLayout()
         
         layout.itemSize = self.frame.size
-        layout.scrollDirection = UICollectionViewScrollDirection.Horizontal
+        layout.scrollDirection = UICollectionViewScrollDirection.horizontal
         
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
         
         let collection = UICollectionView(frame: self.frame, collectionViewLayout: layout)
         
-        collection.pagingEnabled = true
+        collection.isPagingEnabled = true
         collection.bounces = false
         collection.delegate = self
         collection.dataSource = self
         collection.showsHorizontalScrollIndicator = false
-        collection.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: CellIdenifier)
-        collection.scrollToItemAtIndexPath(NSIndexPath(forItem: 1, inSection: 0), atScrollPosition: UICollectionViewScrollPosition.CenteredHorizontally, animated: false)
+        collection.register(UICollectionViewCell.self, forCellWithReuseIdentifier: CellIdenifier)
+        collection.scrollToItem(at: IndexPath(item: 1, section: 0), at: UICollectionViewScrollPosition.centeredHorizontally, animated: false)
         return collection
     }()
     
@@ -59,23 +59,23 @@ class AdsPlayView: UIView {
     
     
     /// 图片 URL 数组
-    var imgURLArr: [NSURL]!
+    var imgURLArr: [URL]!
     /// placeholder image
     var placeholderImage: UIImage!
     /// 滚动 时间间隔
-    private var switchTimer: NSTimer!
+    fileprivate var switchTimer: Timer!
     /// 一个 当前图片 的变量 用于 计算 collectionView 的偏移
-    private var dataCurrentIndex = 0
+    fileprivate var dataCurrentIndex = 0
     /// pageControl 的 currentPage
-    private var pageControlCurrent: Int!
+    fileprivate var pageControlCurrent: Int!
     /// 点击事件的 回调
     // block
-    var didSelectItemAtIndexBlock: ((NSIndexPath) -> Void)!
+    var didSelectItemAtIndexBlock: ((IndexPath) -> Void)!
     // delegate
     var delegate: AdsPlayViewDelegate!
     
     // MARK: - init
-    init(frame: CGRect, placeholderImage: UIImage, URLArr: [NSURL]) {
+    init(frame: CGRect, placeholderImage: UIImage, URLArr: [URL]) {
         super.init(frame: frame)
         self.imgURLArr = URLArr
         addSubview(collectionView)
@@ -91,25 +91,25 @@ class AdsPlayView: UIView {
 
 // MARK: - 页面 滚动
 extension AdsPlayView {
-    private func correctCollectionViewOffset(scrollView: UIScrollView) {
+    fileprivate func correctCollectionViewOffset(_ scrollView: UIScrollView) {
         let offset = scrollView.contentOffset.x / scrollView.bounds.width - 1
         
         if offset != 0 {
             dataCurrentIndex = (dataCurrentIndex + Int(offset) + imgURLArr.count) + imgURLArr.count
-            let indexPath = NSIndexPath(forItem: 1, inSection: 0)
-            collectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: UICollectionViewScrollPosition.CenteredHorizontally, animated: false)
+            let indexPath = IndexPath(item: 1, section: 0)
+            collectionView.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.centeredHorizontally, animated: false)
             
             UIView.setAnimationsEnabled(false)
-            collectionView.reloadItemsAtIndexPaths([indexPath])
+            collectionView.reloadItems(at: [indexPath])
             UIView.setAnimationsEnabled(true)
             
             pageControl.currentPage = pageControlCurrent
         }
     }
     
-    @objc private func beganSwitchAnimation() {
-        let indexPath = NSIndexPath(forItem: 2, inSection: 0)
-        collectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: UICollectionViewScrollPosition.CenteredHorizontally, animated: true)
+    @objc fileprivate func beganSwitchAnimation() {
+        let indexPath = IndexPath(item: 2, section: 0)
+        collectionView.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.centeredHorizontally, animated: true)
         
     }
 }
@@ -117,51 +117,51 @@ extension AdsPlayView {
 private let CellIdenifier = "AsdPalyViewCell"
 // MARK: - UICollectionViewDataSource
 extension AdsPlayView: UICollectionViewDataSource {
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 3
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CellIdenifier, forIndexPath: indexPath)
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellIdenifier, for: indexPath)
         let url = imgURLArr[(indexPath.row - 1 + imgURLArr.count + dataCurrentIndex) % imgURLArr.count]
         pageControlCurrent = (indexPath.row - 1 + imgURLArr.count + dataCurrentIndex) % imgURLArr.count
         
         let imgView = UIImageView(frame: bounds)
         imgView.kf_setImageWithURL(url, placeholderImage: placeholderImage)
         cell.addSubview(imgView)
-        imgView.contentMode = UIViewContentMode.ScaleAspectFill
+        imgView.contentMode = UIViewContentMode.scaleAspectFill
         return cell
     }
 }
 
 // MARK: - UICollectionViewDelegate
 extension AdsPlayView: UICollectionViewDelegate {
-    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         if let _ = switchTimer {
-            switchTimer.fireDate = NSDate.distantFuture()
+            switchTimer.fireDate = Date.distantFuture
         }
     }
     
-    func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if let _ = switchTimer {
-            switchTimer.fireDate = NSDate(timeIntervalSinceNow: switchTimer.timeInterval)
+            switchTimer.fireDate = Date(timeIntervalSinceNow: switchTimer.timeInterval)
         }
     }
-    func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView) {
+    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
        correctCollectionViewOffset(scrollView)
     }
     
-    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         correctCollectionViewOffset(scrollView)
     }
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let block = didSelectItemAtIndexBlock {
-            block(NSIndexPath(forItem: pageControlCurrent, inSection: 0))
+            block(IndexPath(item: pageControlCurrent, section: 0))
         }
         
         if let delegate = delegate {
-            delegate.adsPlayView(self, didSelectItemAtIndexPath: NSIndexPath(forItem: pageControlCurrent, inSection: 0))
+            delegate.adsPlayView(self, didSelectItemAtIndexPath: IndexPath(item: pageControlCurrent, section: 0))
         }
     }
 }

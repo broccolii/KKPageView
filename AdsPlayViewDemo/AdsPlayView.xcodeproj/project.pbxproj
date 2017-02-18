@@ -126,6 +126,7 @@
 				TargetAttributes = {
 					A441A7EA1BF9A3800029C18D = {
 						CreatedOnToolsVersion = 7.1.1;
+						LastSwiftMigration = 0820;
 					};
 				};
 			};
@@ -335,6 +336,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.Broccoli.AdsPlayView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -349,6 +351,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.Broccoli.AdsPlayView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
