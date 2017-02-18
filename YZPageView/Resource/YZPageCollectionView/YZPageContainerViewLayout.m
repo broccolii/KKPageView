@@ -63,7 +63,7 @@
         NSInteger allItemsCount = self.numberOfItems * self.numberOfSections;
         
         // actualItemWidth
-        CGFloat actualItemWidth = self.itemSize.width + self.itemEdgeInsert.left + self.itemEdgeInsert.right;
+        CGFloat actualItemWidth = self.itemSize.width;
         
         // all item width
         CGFloat contentSizeWidth = allItemsCount * actualItemWidth;
@@ -72,7 +72,7 @@
         // all item spacing
         contentSizeWidth += (allItemsCount - 1) * itemSpacing;
         
-        CGFloat contentSizeHeight = self.itemSize.height + self.itemEdgeInsert.top + self.itemEdgeInsert.bottom;
+        CGFloat contentSizeHeight = self.itemSize.height;
         CGSizeMake(contentSizeWidth, contentSizeHeight);
     });
 }
