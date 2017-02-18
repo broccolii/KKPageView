@@ -122,7 +122,7 @@
     NSInteger maxIndex = MIN(ceil((CGRectGetMaxX(rect) - self.leadingSpacing) / self.unitItemWidth), self.numberOfItems * self.numberOfSections);
     
     NSMutableArray *resultingInexPaths = [NSMutableArray array];
-    for (NSInteger index = minIndex; index < maxIndex + 1; index++) {
+    for (NSInteger index = minIndex; index < maxIndex; index++) {
         
         NSInteger item = index % self.numberOfItems;
         NSInteger section = index / self.numberOfItems;
