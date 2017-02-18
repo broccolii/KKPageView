@@ -8,11 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@class YZPageView, YZPageViewCell;
+@class YZPageView, YZPageViewItem;
 @protocol YZPageViewDataSource <NSObject>
 
-- (NSInteger)numberOfItemsInPageView:(YZPageView *)pageView;
+- (NSInteger)numberOfItemsInPageView:(nonnull YZPageView *)pageView;
 
-- (YZPageViewCell *)pageView:(YZPageView *)pageView cellForItemAtIndexPath:(NSIndexPath *)indexPath;
+- (nonnull YZPageViewItem *)pageView:(nonnull YZPageView *)pageView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath;
+
+
 
 @end

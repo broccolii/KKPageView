@@ -10,9 +10,8 @@
 
 #import "YZPageViewDataSource.h"
 #import "YZPageViewDelegate.h"
-#import "YZPageContainerViewLayout.h"
 
-
+@class YZPageViewItem, YZPageContainerViewLayout;
 @interface YZPageView : UIView <UICollectionViewDataSource, UICollectionViewDelegate>
 // TODO: 属性 支持 StoryBoard
 @property (nonatomic, weak, nullable) id<YZPageViewDataSource> dataSource;
@@ -27,8 +26,8 @@
 // default: 3s
 @property (nonatomic, assign) NSTimeInterval switchDurationTime;
 
-// default: UIRectEdgeNone
-@property (nonatomic, assign) UIEdgeInsets itemEdgeInsert;
+// default: 0
+@property (nonatomic, assign) CGFloat leadingSpacing;
 // default: pageView size
 @property (nonatomic, assign) CGSize itemSize;
 // default: 0
@@ -36,6 +35,6 @@
 
 - (void)registerClass:(nullable Class)cellClass forCellWithReuseIdentifier:(nonnull NSString *)identifier;
 
-- (nonnull YZPageViewCell *)dequeueReusableCellWithReuseIdentifier:(nonnull NSString *)identifier forIndexPath:(nonnull NSIndexPath *)indexPath;
+- (nonnull YZPageViewItem *)dequeueReusableCellWithReuseIdentifier:(nonnull NSString *)identifier forIndexPath:(nonnull NSIndexPath *)indexPath;
 
 @end

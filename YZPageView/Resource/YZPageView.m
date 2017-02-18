@@ -7,8 +7,9 @@
 //
 
 #import "YZPageView.h"
-#import "YZPageViewCell.h"
 #import "YZPageContainerView.h"
+#import "YZPageViewItem.h"
+#import "YZPageContainerViewLayout.h"
 
 @interface YZPageView () 
 
@@ -43,7 +44,7 @@
     if (!self) {
         return nil;
     }
-    [self setupContainerView];
+//    [self setupContainerView];
     return self;
 }
 
@@ -58,10 +59,10 @@
     [self.containerView registerClass:cellClass forCellWithReuseIdentifier:identifier];
 }
 
-- (nonnull YZPageViewCell *)dequeueReusableCellWithReuseIdentifier:(nonnull NSString *)identifier forIndexPath:(NSIndexPath *)index {
+- (nonnull YZPageViewItem *)dequeueReusableCellWithReuseIdentifier:(nonnull NSString *)identifier forIndexPath:(NSIndexPath *)index {
     // TODO: 复用的时候这里的section 会不会有问题
-    YZPageViewCell *pageViewCell = [self.containerView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:index];
-    return pageViewCell;
+    YZPageViewItem *pageViewItem = [self.containerView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:index];
+    return pageViewItem;
 }
 
 #pragma mark - Override 
@@ -99,7 +100,6 @@
 
 #pragma mark - setup UI
 - (void)setupContainerView {
-    _containerView.collectionViewLayout = self.containerViewLayout;
     [self addSubview:self.containerView];
 }
 

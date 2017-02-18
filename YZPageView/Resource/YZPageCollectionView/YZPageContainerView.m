@@ -10,4 +10,23 @@
 
 @implementation YZPageContainerView
 
+#pragma mark - Initialize
+- (instancetype)init {
+    if (!self) {
+        return nil;
+    }
+    [self setupUIComponent];
+    return self;
+}
+
+#pragma mark - setup
+- (void)setupUIComponent {
+    self.contentInset = UIEdgeInsetsZero;
+    self.scrollsToTop = NO;
+    self.pagingEnabled = NO;
+    self.decelerationRate = UIScrollViewDecelerationRateFast;
+    self.showsVerticalScrollIndicator = NO;
+    self.showsHorizontalScrollIndicator = NO;
+}
+
 @end

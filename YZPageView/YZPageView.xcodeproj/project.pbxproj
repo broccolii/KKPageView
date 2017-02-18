@@ -15,7 +15,7 @@
 		A4506D301E55FD24009E7BEC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4506D2E1E55FD24009E7BEC /* LaunchScreen.storyboard */; };
 		A4506D3D1E55FDD3009E7BEC /* YZPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4506D3C1E55FDD3009E7BEC /* YZPageView.m */; };
 		A4506D4E1E55FE6C009E7BEC /* YZPageContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4506D491E55FE6C009E7BEC /* YZPageContainerView.m */; };
-		A4506D4F1E55FE6C009E7BEC /* YZPageViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4506D4B1E55FE6C009E7BEC /* YZPageViewCell.m */; };
+		A4506D4F1E55FE6C009E7BEC /* YZPageViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A4506D4B1E55FE6C009E7BEC /* YZPageViewItem.m */; };
 		A4506D501E55FE6C009E7BEC /* YZPageContainerViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = A4506D4D1E55FE6C009E7BEC /* YZPageContainerViewLayout.m */; };
 		A4506D531E55FF15009E7BEC /* YZPageTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = A4506D521E55FF15009E7BEC /* YZPageTransition.m */; };
 /* End PBXBuildFile section */
@@ -35,8 +35,8 @@
 		A4506D3C1E55FDD3009E7BEC /* YZPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YZPageView.m; sourceTree = "<group>"; };
 		A4506D481E55FE6C009E7BEC /* YZPageContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YZPageContainerView.h; sourceTree = "<group>"; };
 		A4506D491E55FE6C009E7BEC /* YZPageContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YZPageContainerView.m; sourceTree = "<group>"; };
-		A4506D4A1E55FE6C009E7BEC /* YZPageViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YZPageViewCell.h; sourceTree = "<group>"; };
-		A4506D4B1E55FE6C009E7BEC /* YZPageViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YZPageViewCell.m; sourceTree = "<group>"; };
+		A4506D4A1E55FE6C009E7BEC /* YZPageViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YZPageViewItem.h; sourceTree = "<group>"; };
+		A4506D4B1E55FE6C009E7BEC /* YZPageViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YZPageViewItem.m; sourceTree = "<group>"; };
 		A4506D4C1E55FE6C009E7BEC /* YZPageContainerViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YZPageContainerViewLayout.h; sourceTree = "<group>"; };
 		A4506D4D1E55FE6C009E7BEC /* YZPageContainerViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YZPageContainerViewLayout.m; sourceTree = "<group>"; };
 		A4506D511E55FF15009E7BEC /* YZPageTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YZPageTransition.h; sourceTree = "<group>"; };
@@ -116,8 +116,8 @@
 			children = (
 				A4506D481E55FE6C009E7BEC /* YZPageContainerView.h */,
 				A4506D491E55FE6C009E7BEC /* YZPageContainerView.m */,
-				A4506D4A1E55FE6C009E7BEC /* YZPageViewCell.h */,
-				A4506D4B1E55FE6C009E7BEC /* YZPageViewCell.m */,
+				A4506D4A1E55FE6C009E7BEC /* YZPageViewItem.h */,
+				A4506D4B1E55FE6C009E7BEC /* YZPageViewItem.m */,
 				A4506D4C1E55FE6C009E7BEC /* YZPageContainerViewLayout.h */,
 				A4506D4D1E55FE6C009E7BEC /* YZPageContainerViewLayout.m */,
 			);
@@ -202,7 +202,7 @@
 				A4506D4E1E55FE6C009E7BEC /* YZPageContainerView.m in Sources */,
 				A4506D251E55FD24009E7BEC /* AppDelegate.m in Sources */,
 				A4506D3D1E55FDD3009E7BEC /* YZPageView.m in Sources */,
-				A4506D4F1E55FE6C009E7BEC /* YZPageViewCell.m in Sources */,
+				A4506D4F1E55FE6C009E7BEC /* YZPageViewItem.m in Sources */,
 				A4506D221E55FD24009E7BEC /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
