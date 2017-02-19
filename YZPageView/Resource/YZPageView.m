@@ -13,7 +13,9 @@
 
 @interface YZPageView ()
 
+@property (nonatomic, strong) UIView *contentView;
 @property (nonatomic, strong) YZPageContainerView *containerView;
+
 @property (nonatomic, strong) NSTimer *automaticSwitchTimer;
 @property (nonatomic, strong) NSIndexPath *currentIndexPath;
 
@@ -69,7 +71,9 @@
 
 #pragma mark - Override
 - (void)layoutSubviews {
-    self.containerView.frame = self.bounds;
+    self.backgroundView.frame = self.bounds;
+    self.contentView.frame = self.bounds;
+    self.containerView.frame = self.contentView.bounds;
 }
 
 - (void)didMoveToWindow {
@@ -129,7 +133,8 @@
 
 #pragma mark - setup UI
 - (void)setupContainerView {
-    [self addSubview:self.containerView];
+    [self addSubview:self.contentView];
+    [self.contentView addSubview:self.containerView];
 }
 
 #pragma mark - Automatic Switch
@@ -163,6 +168,14 @@
 }
 
 #pragma mark - Getter
+- (UIView *)contentView {
+    if (!_contentView) {
+        _contentView = [[UIView alloc] initWithFrame:CGRectZero];
+        _contentView.backgroundColor = [UIColor clearColor];
+    }
+    return _contentView;
+}
+
 - (YZPageContainerView *)containerView {
     if (!_containerView) {
         _containerView = [[YZPageContainerView alloc] initWithFrame:CGRectZero collectionViewLayout:self.containerViewLayout];
@@ -193,4 +206,14 @@
         _automaticSwitch = automaticSwitch;
     }
 }
+
+- (void)setBackgroundView:(UIView *)backgroundView {
+    if (_backgroundView != backgroundView) {
+        _backgroundView = backgroundView;
+        
+        [self insertSubview:backgroundView atIndex:0];
+        [self setNeedsLayout];
+    }
+}
+
 @end

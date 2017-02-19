@@ -16,19 +16,14 @@
 @class YZPageViewItem, YZPageContainerViewLayout;
 @interface YZPageView : UIView <UICollectionViewDataSource, UICollectionViewDelegate>
 
-// TODO: 属性 支持 StoryBoard
 #if TARGET_INTERFACE_BUILDER
-
 @property (nonatomic, weak, nullable) IBOutlet id<YZPageViewDataSource> dataSource;
 @property (nonatomic, weak, nullable) IBOutlet id<YZPageViewDelegate> delegate;
 @property (nonatomic, weak, nullable) IBOutlet id<YZPageTransitionAnimator> animator;
-
 #else
-
 @property (nonatomic, weak, nullable) IBInspectable id<YZPageViewDataSource> dataSource;
 @property (nonatomic, weak, nullable) IBInspectable id<YZPageViewDelegate> delegate;
 @property (nonatomic, weak, nullable) IBInspectable id<YZPageTransitionAnimator> animator;
-
 #endif
 
 @property (nonatomic, assign) IBInspectable NSInteger numberOfItems;
@@ -48,6 +43,8 @@
 @property (nonatomic, assign) IBInspectable CGSize itemSize;
 // default: 0
 @property (nonatomic, assign) IBInspectable CGFloat itemSpacing;
+
+@property (nonatomic, strong, nonnull) UIView *backgroundView;
 
 - (void)registerClass:(nullable Class)cellClass forCellWithReuseIdentifier:(nonnull NSString *)identifier;
 
