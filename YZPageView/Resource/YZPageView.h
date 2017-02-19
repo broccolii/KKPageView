@@ -15,26 +15,29 @@
 
 @class YZPageViewItem, YZPageContainerViewLayout;
 @interface YZPageView : UIView <UICollectionViewDataSource, UICollectionViewDelegate>
+
 // TODO: 属性 支持 StoryBoard
-@property (nonatomic, weak, nullable) id<YZPageViewDataSource> dataSource;
-@property (nonatomic, weak, nullable) id<YZPageViewDelegate> delegate;
-@property (nonatomic, weak, nullable) id<YZPageTransitionAnimator> animator;
+@property (nonatomic, weak, nullable) IBInspectable id<YZPageViewDataSource> dataSource;
+@property (nonatomic, weak, nullable) IBInspectable id<YZPageViewDelegate> delegate;
+@property (nonatomic, weak, nullable) IBInspectable id<YZPageTransitionAnimator> animator;
 
-@property (nonatomic, strong, nullable) YZPageContainerViewLayout *containerViewLayout;
+@property (nonatomic, assign) IBInspectable NSInteger numberOfItems;
+
+@property (nonatomic, strong, nullable) IBInspectable YZPageContainerViewLayout *containerViewLayout;
 // default: NO
-@property (nonatomic, assign, getter=isInfinite) BOOL infinite;
+@property (nonatomic, assign, getter=isInfinite) IBInspectable BOOL infinite;
 
 // default: NO
-@property (nonatomic, assign, getter=isAutomaticSwitch) BOOL automaticSwitch;
+@property (nonatomic, assign, getter=isAutomaticSwitch) IBInspectable BOOL automaticSwitch;
 // default: 3s
-@property (nonatomic, assign) NSTimeInterval switchDurationTime;
+@property (nonatomic, assign) IBInspectable NSTimeInterval switchDurationTime;
 
 // default: 0
-@property (nonatomic, assign) CGFloat leadingSpacing;
+@property (nonatomic, assign) IBInspectable CGFloat leadingSpacing;
 // default: pageView size
-@property (nonatomic, assign) CGSize itemSize;
+@property (nonatomic, assign) IBInspectable CGSize itemSize;
 // default: 0
-@property (nonatomic, assign) CGFloat itemSpacing;
+@property (nonatomic, assign) IBInspectable CGFloat itemSpacing;
 
 - (void)registerClass:(nullable Class)cellClass forCellWithReuseIdentifier:(nonnull NSString *)identifier;
 

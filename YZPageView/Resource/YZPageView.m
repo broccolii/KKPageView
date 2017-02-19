@@ -11,9 +11,11 @@
 #import "YZPageViewItem.h"
 #import "YZPageContainerViewLayout.h"
 
-@interface YZPageView () 
+@interface YZPageView ()
 
 @property (nonatomic, strong) YZPageContainerView *containerView;
+@property (nonatomic, strong) NSTimer *automaticSwitchTimer;
+@property (nonatomic, strong) NSIndexPath *currentIndexPath;
 
 @end
 
@@ -25,7 +27,7 @@
     if (!self) {
         return nil;
     }
-    
+    [self commonInit];
     [self setupContainerView];
     return self;
 }
@@ -35,9 +37,13 @@
     if (!self) {
         return nil;
     }
-    
+    [self commonInit];
     [self setupContainerView];
     return self;
+}
+
+- (void)commonInit {
+    self.switchDurationTime = 3.0;
 }
 
 #pragma mark - Life Circle
@@ -57,9 +63,20 @@
     return pageViewItem;
 }
 
-#pragma mark - Override 
--(void)layoutSubviews {
+- (void)reloadData {
+    [self.containerView reloadData];
+}
+
+#pragma mark - Override
+- (void)layoutSubviews {
     self.containerView.frame = self.bounds;
+}
+
+- (void)didMoveToWindow {
+    [super didMoveToWindow];
+    if (self.automaticSwitch) {
+        [self startTimer];
+    }
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -68,7 +85,7 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return [self numberOfItems];
+    return self.numberOfItems;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -77,22 +94,72 @@
 
 #pragma mark - UICollectionViewDelegate
 
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    if (self.automaticSwitch) {
+        [self stopTimer];
+    }
+}
+
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
+    
+    if (self.automaticSwitch) {
+        [self startTimer];
+    }
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (self.numberOfItems > 0) {
+        NSInteger currentIndex = lround(scrollView.contentOffset.x / (self.itemSize.width + self.itemSpacing)) % self.numberOfItems;
+        NSInteger currentSection = lround(scrollView.contentOffset.x / (self.itemSize.width + self.itemSpacing)) / self.numberOfItems;
+        if (self.currentIndexPath.item != currentIndex || self.currentIndexPath.section != currentSection) {
+            self.currentIndexPath = [NSIndexPath indexPathForItem:currentIndex inSection:currentSection];
+        }
+    }
+}
+
 #pragma mark - Private method
 - (NSInteger)numberOfSections {
+    self.numberOfItems = [self.dataSource numberOfItemsInPageView:self];
     if (self.infinite) {
-        return INT16_MAX / [self numberOfItems];
+        return UINT16_MAX / self.numberOfItems;
     }
     
     return 1;
 }
 
-- (NSInteger)numberOfItems {
-    return [self.dataSource numberOfItemsInPageView:self];
-}
-
 #pragma mark - setup UI
 - (void)setupContainerView {
     [self addSubview:self.containerView];
+}
+
+#pragma mark - Automatic Switch
+- (void)startTimer {
+    self.automaticSwitchTimer = [NSTimer scheduledTimerWithTimeInterval:self.switchDurationTime target:self selector:@selector(switchNextPage) userInfo:nil repeats:YES];
+}
+
+- (void)stopTimer {
+    [self.automaticSwitchTimer invalidate];
+    self.automaticSwitchTimer = nil;
+}
+
+- (void)switchNextPage {
+    if (self.containerView.isTracking) {
+        return;
+    }
+    
+    NSIndexPath *nextIndexPath;
+    
+    if (self.currentIndexPath.item + 1 < self.numberOfItems) {
+        nextIndexPath = [NSIndexPath indexPathForItem:self.currentIndexPath.item + 1 inSection:self.currentIndexPath.section];
+    } else {
+        if (self.infinite) {
+            nextIndexPath = [NSIndexPath indexPathForItem:0 inSection:self.currentIndexPath.section + 1];
+        } else {
+            nextIndexPath = [NSIndexPath indexPathForItem:0 inSection:0];
+        }
+    }
+    CGPoint contentOffset = [self.containerViewLayout contentOffsetForIndexPath:nextIndexPath];
+    [self.containerView setContentOffset:contentOffset animated:YES];
 }
 
 #pragma mark - Getter
@@ -120,4 +187,10 @@
     return _itemSize;
 }
 
+#pragma mark - Setter
+- (void)setAutomaticSwitch:(BOOL)automaticSwitch {
+    if (_automaticSwitch != automaticSwitch) {
+        _automaticSwitch = automaticSwitch;
+    }
+}
 @end
