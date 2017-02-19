@@ -161,18 +161,12 @@
 }
 
 - (YZPageContainerViewLayoutAttributes *)transformLayoutAttributes:(YZPageContainerViewLayoutAttributes *)layoutAttributes {
-//    [self invalidateLayout];
-//    CGFloat width = self.collectionView.frame.size.width;
-//    CGFloat centerX = width / 2;
-//    CGFloat offset = self.collectionView.contentOffset.x;
-//    CGFloat itemX = layoutAttributes.center.x - offset;
-//    CGFloat position = (itemX - centerX) / width;
-    CGFloat ruler = CGRectGetMidX(self.collectionView.bounds);
-    CGFloat position = (layoutAttributes.center.x-ruler)/self.unitItemWidth;
+
+    CGFloat position = (layoutAttributes.center.x - CGRectGetMidX(self.collectionView.bounds))/self.unitItemWidth;
     layoutAttributes.contentView = [self.collectionView cellForItemAtIndexPath:layoutAttributes.indexPath];
     
-    [self.animator transitionAnimationWithOffsetPercent:position
-                                       layoutAttributes:layoutAttributes];
+    [self.animator transitionAnimationWithLayoutAttributes:layoutAttributes
+                                               forPosition:position];
     return layoutAttributes;
 }
 
@@ -186,7 +180,7 @@
 
 - (YZPageView *)pageView {
     if (!_pageView) {
-        _pageView = (YZPageView *)[self.collectionView superview];
+        _pageView = (YZPageView *)[[self.collectionView superview] superview];
     }
     return _pageView;
 }

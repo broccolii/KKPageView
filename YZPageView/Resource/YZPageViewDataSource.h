@@ -15,6 +15,4 @@
 
 - (nonnull YZPageViewItem *)pageView:(nonnull YZPageView *)pageView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath;
 
-
-
 @end
