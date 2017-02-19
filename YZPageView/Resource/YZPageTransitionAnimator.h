@@ -11,7 +11,7 @@
 
 @protocol YZPageTransitionAnimator <NSObject>
 
-- (void)transitionAnimationWithOffsetPercent:(CGFloat)offSetPersent
-                            layoutAttributes:(YZPageContainerViewLayoutAttributes *)layoutAttributes;
+- (void)transitionAnimationWithLayoutAttributes:(YZPageContainerViewLayoutAttributes *)layoutAttributes
+                                    forPosition:(CGFloat)position;
 
 @end
