@@ -11,6 +11,7 @@
 
 @interface ViewController ()<YZPageViewDelegate, YZPageViewDataSource, YZPageTransitionAnimator>
 
+@property (strong, nonatomic) IBOutlet YZPageView *pageView;
 
 @end
 
@@ -24,25 +25,31 @@
 
 
 - (void)setupPageView {
-    
-    YZPageView *pageView = [[YZPageView alloc] init];
-    pageView.frame = CGRectMake(0, 20, self.view.frame.size.width, self.view.frame.size.height);
-    
-    [pageView registerClass:[YZPageViewItem class] forCellWithReuseIdentifier:@"YZPageViewItem"];
-    pageView.delegate = self;
-    pageView.dataSource = self;
+//    
+//    YZPageView *pageView = [[YZPageView alloc] init];
+//    pageView.frame = CGRectMake(0, 20, self.view.frame.size.width, self.view.frame.size.height);
+//    
+
+//    pageView.delegate = self;
+//    pageView.dataSource = self;
 //    pageView.animator = self;
+//    pageView.infinite = YES;
+//    pageView.itemSize = CGSizeMake([UIScreen mainScreen].bounds.size.width - 100, 100);
+//    pageView.leadingSpacing = 20;
+//    pageView.itemSpacing = 30;
+//    
+//    [self.view addSubview:pageView];
+//    
+//    self.pageView = pageView;
     
-    pageView.itemSize = CGSizeMake([UIScreen mainScreen].bounds.size.width - 100, 100);
-    pageView.leadingSpacing = 20;
-    pageView.itemSpacing = 30;
-    
-    [self.view addSubview:pageView];
+    self.pageView.delegate = self;
+    self.pageView.dataSource = self;
+    [self.pageView registerClass:[YZPageViewItem class] forCellWithReuseIdentifier:@"YZPageViewItem"];
 }
 
 #pragma mark - YZPageViewDataSource
 - (NSInteger)numberOfItemsInPageView:(YZPageView *)pageView {
-    return 10;
+    return 5;
 }
 
 - (YZPageViewItem *)pageView:(YZPageView *)pageView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -57,15 +64,14 @@
 #pragma mark - YZPageTransitionAnimator
 - (void)transitionAnimationWithOffsetPercent:(CGFloat)offSetPersent
                             layoutAttributes:(YZPageContainerViewLayoutAttributes *)layoutAttributes {
-    if (fabs(offSetPersent) >= 1) {
-        layoutAttributes.contentView.transform = CGAffineTransformIdentity;
-        layoutAttributes.alpha = 1.0;
-    } else {
-        CGFloat rotateFactor = M_PI_4 * offSetPersent;
-        layoutAttributes.zIndex = layoutAttributes.indexPath.row;
-        layoutAttributes.alpha = 1.0 - fabs(offSetPersent);
-        layoutAttributes.contentView.transform = CGAffineTransformRotate(layoutAttributes.contentView.transform, rotateFactor);
-    }
+    [self.pageView.containerViewLayout invalidateLayout];
+    CGFloat scale = MAX(1 - (1-0.65) * fabs(offSetPersent), 0.65);
+    CGAffineTransform transform = CGAffineTransformMakeScale(scale, scale);
+    CGFloat alpha = (0.6 + (1-fabs(offSetPersent))*(1-0.6));
+    CGFloat zIndex = (1-fabs(offSetPersent)) * 10;
+    layoutAttributes.alpha = alpha;
+    layoutAttributes.transform = transform;
+    layoutAttributes.zIndex = (int)zIndex;
 }
 
 @end
