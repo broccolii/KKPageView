@@ -57,21 +57,21 @@
     CGFloat red = (CGFloat)random() / (CGFloat)RAND_MAX;
     CGFloat green = (CGFloat)random() / (CGFloat)RAND_MAX;
     CGFloat blue = (CGFloat)random() / (CGFloat)RAND_MAX;
-    cell.backgroundColor = [UIColor colorWithRed:red green:green blue:blue alpha:1.0f];
+    cell.contentView.backgroundColor = [UIColor colorWithRed:red green:green blue:blue alpha:1.0f];
     return cell;
 }
 
 #pragma mark - YZPageTransitionAnimator
 - (void)transitionAnimationWithOffsetPercent:(CGFloat)offSetPersent
                             layoutAttributes:(YZPageContainerViewLayoutAttributes *)layoutAttributes {
-    [self.pageView.containerViewLayout invalidateLayout];
-    CGFloat scale = MAX(1 - (1-0.65) * fabs(offSetPersent), 0.65);
-    CGAffineTransform transform = CGAffineTransformMakeScale(scale, scale);
-    CGFloat alpha = (0.6 + (1-fabs(offSetPersent))*(1-0.6));
-    CGFloat zIndex = (1-fabs(offSetPersent)) * 10;
-    layoutAttributes.alpha = alpha;
-    layoutAttributes.transform = transform;
-    layoutAttributes.zIndex = (int)zIndex;
+//    [self.pageView.containerViewLayout invalidateLayout];
+//    CGFloat scale = MAX(1 - (1-0.65) * fabs(offSetPersent), 0.65);
+//    CGAffineTransform transform = CGAffineTransformMakeScale(scale, scale);
+//    CGFloat alpha = (0.6 + (1-fabs(offSetPersent))*(1-0.6));
+//    CGFloat zIndex = (1-fabs(offSetPersent)) * 10;
+//    layoutAttributes.alpha = alpha;
+//    layoutAttributes.transform = transform;
+//    layoutAttributes.zIndex = (int)zIndex;
 }
 
 @end
