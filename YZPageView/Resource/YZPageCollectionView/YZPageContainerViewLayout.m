@@ -161,12 +161,14 @@
 }
 
 - (YZPageContainerViewLayoutAttributes *)transformLayoutAttributes:(YZPageContainerViewLayoutAttributes *)layoutAttributes {
-    CGFloat width = self.collectionView.frame.size.width;
-    CGFloat centerX = width / 2;
-    CGFloat offset = self.collectionView.contentOffset.x;
-    CGFloat itemX = layoutAttributes.center.x - offset;
-    CGFloat position = (itemX - centerX) / width;
-    
+//    [self invalidateLayout];
+//    CGFloat width = self.collectionView.frame.size.width;
+//    CGFloat centerX = width / 2;
+//    CGFloat offset = self.collectionView.contentOffset.x;
+//    CGFloat itemX = layoutAttributes.center.x - offset;
+//    CGFloat position = (itemX - centerX) / width;
+    CGFloat ruler = CGRectGetMidX(self.collectionView.bounds);
+    CGFloat position = (layoutAttributes.center.x-ruler)/self.unitItemWidth;
     layoutAttributes.contentView = [self.collectionView cellForItemAtIndexPath:layoutAttributes.indexPath];
     
     [self.animator transitionAnimationWithOffsetPercent:position
