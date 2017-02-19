@@ -16,4 +16,6 @@
 
 @interface YZPageContainerViewLayout : UICollectionViewLayout
 
+- (CGPoint)contentOffsetForIndexPath:(NSIndexPath *)indexPath;
+
 @end

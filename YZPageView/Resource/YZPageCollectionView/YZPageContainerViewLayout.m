@@ -55,8 +55,8 @@
     
     CGFloat itemSpacing = self.pageView.itemSpacing;
     
-    self.numberOfItems = [self.pageView collectionView:self.collectionView numberOfItemsInSection:0];
     self.numberOfSections = [self.pageView numberOfSectionsInCollectionView:self.collectionView];
+    self.numberOfItems = [self.pageView collectionView:self.collectionView numberOfItemsInSection:0];
     self.unitItemWidth = self.itemSize.width + itemSpacing;
     
     self.contentSize = ({
@@ -93,8 +93,11 @@
 }
 
 - (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.layoutAttributesMapping[indexPath]) {
+        return self.layoutAttributesMapping[indexPath];
+    }
     YZPageContainerViewLayoutAttributes *attributes = [YZPageContainerViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
-    CGRect itemFrame = [self itemFrameForIndex:indexPath];
+    CGRect itemFrame = [self itemFrameForIndexPath:indexPath];
     
     attributes.center = CGPointMake(CGRectGetMidX(itemFrame), CGRectGetMidY(itemFrame));
     attributes.size = self.itemSize;
@@ -143,7 +146,13 @@
     return resultingInexPaths;
 }
 
-- (CGRect)itemFrameForIndex:(NSIndexPath *)indexPath {
+- (CGPoint)contentOffsetForIndexPath:(NSIndexPath *)indexPath {
+    CGPoint origin = [self itemFrameForIndexPath:indexPath].origin;
+    
+    return CGPointMake(origin.x - self.leadingSpacing, self.collectionView.contentOffset.y);
+}
+
+- (CGRect)itemFrameForIndexPath:(NSIndexPath *)indexPath {
     NSInteger indexOfItems = self.numberOfItems * indexPath.section + indexPath.item;
     CGFloat originX = self.leadingSpacing + indexOfItems * self.unitItemWidth;
     CGFloat originY = (self.collectionView.frame.size.height - self.itemSize.height) / 2;
