@@ -1,30 +1,30 @@
 //
-//  YZPageContainerViewLayout.m
-//  YZPageView
+//  KKPageContainerViewLayout.m
+//  KKPageView
 //
 //  Created by Broccoli on 2017/2/16.
 //  Copyright © 2017年 broccoli. All rights reserved.
 //
 
-#import "YZPageContainerViewLayout.h"
-#import "YZPageView.h"
-#import "YZPageTransitionAnimator.h"
+#import "KKPageContainerViewLayout.h"
+#import "KKPageView.h"
+#import "KKPageTransitionAnimator.h"
 
-@implementation YZPageContainerViewLayoutAttributes
+@implementation KKPageContainerViewLayoutAttributes
 
 - (instancetype)copyWithZone:(NSZone *)zone {
-    YZPageContainerViewLayoutAttributes *copy = [[super copyWithZone:zone] init];
+    KKPageContainerViewLayoutAttributes *copy = [[super copyWithZone:zone] init];
     copy.contentView = _contentView;
     return copy;
 }
 
 @end
 
-@interface YZPageContainerViewLayout ()
+@interface KKPageContainerViewLayout ()
 
-@property (nonatomic, weak) YZPageView *pageView;
+@property (nonatomic, weak) KKPageView *pageView;
 
-// TODO: [indexPath : YZPageContainerViewLayoutAttributes]
+// TODO: [indexPath : KKPageContainerViewLayoutAttributes]
 @property (nonatomic, strong) NSMutableDictionary *layoutAttributesMapping;
 
 @property (nonatomic, assign) NSInteger numberOfItems;
@@ -36,11 +36,11 @@
 @property (nonatomic, assign) CGSize contentSize;
 @property (nonatomic, assign) CGFloat leadingSpacing;
 
-@property (nonatomic, weak, nullable) id<YZPageTransitionAnimator> animator;
+@property (nonatomic, weak, nullable) id<KKPageTransitionAnimator> animator;
 
 @end
 
-@implementation YZPageContainerViewLayout
+@implementation KKPageContainerViewLayout
 
 #pragma mark - 
 // TODO: 屏幕旋转
@@ -86,7 +86,7 @@
     NSMutableArray *resultingAttributes = [NSMutableArray array];
     
     for (NSIndexPath *indexPath in indexPaths) {
-        YZPageContainerViewLayoutAttributes *transformLayoutAttributes = [self transformLayoutAttributes: (YZPageContainerViewLayoutAttributes *)[self layoutAttributesForItemAtIndexPath:indexPath]];
+        KKPageContainerViewLayoutAttributes *transformLayoutAttributes = [self transformLayoutAttributes: (KKPageContainerViewLayoutAttributes *)[self layoutAttributesForItemAtIndexPath:indexPath]];
         [resultingAttributes addObject:transformLayoutAttributes];
     }
     return resultingAttributes;
@@ -96,7 +96,7 @@
     if (self.layoutAttributesMapping[indexPath]) {
         return self.layoutAttributesMapping[indexPath];
     }
-    YZPageContainerViewLayoutAttributes *attributes = [YZPageContainerViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
+    KKPageContainerViewLayoutAttributes *attributes = [KKPageContainerViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
     CGRect itemFrame = [self itemFrameForIndexPath:indexPath];
     
     attributes.center = CGPointMake(CGRectGetMidX(itemFrame), CGRectGetMidY(itemFrame));
@@ -160,7 +160,7 @@
     return CGRectMake(originX, originY, self.itemSize.width, self.itemSize.height);
 }
 
-- (YZPageContainerViewLayoutAttributes *)transformLayoutAttributes:(YZPageContainerViewLayoutAttributes *)layoutAttributes {
+- (KKPageContainerViewLayoutAttributes *)transformLayoutAttributes:(KKPageContainerViewLayoutAttributes *)layoutAttributes {
 
     CGFloat position = (layoutAttributes.center.x - CGRectGetMidX(self.collectionView.bounds))/self.unitItemWidth;
     layoutAttributes.contentView = [self.collectionView cellForItemAtIndexPath:layoutAttributes.indexPath];
@@ -178,9 +178,9 @@
     return _layoutAttributesMapping;
 }
 
-- (YZPageView *)pageView {
+- (KKPageView *)pageView {
     if (!_pageView) {
-        _pageView = (YZPageView *)[[self.collectionView superview] superview];
+        _pageView = (KKPageView *)[[self.collectionView superview] superview];
     }
     return _pageView;
 }

@@ -1,17 +1,17 @@
 //
 //  ViewController.m
-//  YZPageView
+//  KKPageView
 //
 //  Created by Broccoli on 2017/2/16.
 //  Copyright © 2017年 broccoli. All rights reserved.
 //
 
 #import "ViewController.h"
-#import "YZPageView.h"
+#import "KKPageView.h"
 
-@interface ViewController ()<YZPageViewDelegate, YZPageViewDataSource, YZPageTransitionAnimator>
+@interface ViewController ()<KKPageViewDelegate, KKPageViewDataSource, KKPageTransitionAnimator>
 
-@property (strong, nonatomic) IBOutlet YZPageView *pageView;
+@property (strong, nonatomic) IBOutlet KKPageView *pageView;
 
 @end
 
@@ -26,7 +26,7 @@
 
 - (void)setupPageView {
 //    
-//    YZPageView *pageView = [[YZPageView alloc] init];
+//    KKPageView *pageView = [[KKPageView alloc] init];
 //    pageView.frame = CGRectMake(0, 20, self.view.frame.size.width, self.view.frame.size.height);
 //    
 
@@ -44,16 +44,16 @@
     
     self.pageView.delegate = self;
     self.pageView.dataSource = self;
-    [self.pageView registerClass:[YZPageViewItem class] forCellWithReuseIdentifier:@"YZPageViewItem"];
+    [self.pageView registerClass:[KKPageViewItem class] forCellWithReuseIdentifier:@"KKPageViewItem"];
 }
 
-#pragma mark - YZPageViewDataSource
-- (NSInteger)numberOfItemsInPageView:(YZPageView *)pageView {
+#pragma mark - KKPageViewDataSource
+- (NSInteger)numberOfItemsInPageView:(KKPageView *)pageView {
     return 5;
 }
 
-- (YZPageViewItem *)pageView:(YZPageView *)pageView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    YZPageViewItem *cell = [pageView dequeueReusableCellWithReuseIdentifier:@"YZPageViewItem" forIndexPath:indexPath];
+- (KKPageViewItem *)pageView:(KKPageView *)pageView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    KKPageViewItem *cell = [pageView dequeueReusableCellWithReuseIdentifier:@"KKPageViewItem" forIndexPath:indexPath];
     CGFloat red = (CGFloat)random() / (CGFloat)RAND_MAX;
     CGFloat green = (CGFloat)random() / (CGFloat)RAND_MAX;
     CGFloat blue = (CGFloat)random() / (CGFloat)RAND_MAX;
@@ -61,9 +61,9 @@
     return cell;
 }
 
-#pragma mark - YZPageTransitionAnimator
+#pragma mark - KKPageTransitionAnimator
 - (void)transitionAnimationWithOffsetPercent:(CGFloat)offSetPersent
-                            layoutAttributes:(YZPageContainerViewLayoutAttributes *)layoutAttributes {
+                            layoutAttributes:(KKPageContainerViewLayoutAttributes *)layoutAttributes {
 //    [self.pageView.containerViewLayout invalidateLayout];
 //    CGFloat scale = MAX(1 - (1-0.65) * fabs(offSetPersent), 0.65);
 //    CGAffineTransform transform = CGAffineTransformMakeScale(scale, scale);

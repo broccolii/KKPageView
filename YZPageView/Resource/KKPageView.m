@@ -1,27 +1,27 @@
 //
-//  YZPageView.m
-//  YZPageView
+//  KKPageView.m
+//  KKPageView
 //
 //  Created by Broccoli on 2017/2/16.
 //  Copyright © 2017年 broccoli. All rights reserved.
 //
 
-#import "YZPageView.h"
-#import "YZPageContainerView.h"
-#import "YZPageViewItem.h"
-#import "YZPageContainerViewLayout.h"
+#import "KKPageView.h"
+#import "KKPageContainerView.h"
+#import "KKPageViewItem.h"
+#import "KKPageContainerViewLayout.h"
 
-@interface YZPageView ()
+@interface KKPageView ()
 
 @property (nonatomic, strong) UIView *contentView;
-@property (nonatomic, strong) YZPageContainerView *containerView;
+@property (nonatomic, strong) KKPageContainerView *containerView;
 
 @property (nonatomic, strong) NSTimer *automaticSwitchTimer;
 @property (nonatomic, strong) NSIndexPath *currentIndexPath;
 
 @end
 
-@implementation YZPageView
+@implementation KKPageView
 
 #pragma mark - Initialize
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -59,9 +59,9 @@
     [self.containerView registerClass:cellClass forCellWithReuseIdentifier:identifier];
 }
 
-- (nonnull YZPageViewItem *)dequeueReusableCellWithReuseIdentifier:(nonnull NSString *)identifier forIndexPath:(NSIndexPath *)index {
+- (nonnull KKPageViewItem *)dequeueReusableCellWithReuseIdentifier:(nonnull NSString *)identifier forIndexPath:(NSIndexPath *)index {
     // TODO: 复用的时候这里的section 会不会有问题
-    YZPageViewItem *pageViewItem = [self.containerView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:index];
+    KKPageViewItem *pageViewItem = [self.containerView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:index];
     return pageViewItem;
 }
 
@@ -176,9 +176,9 @@
     return _contentView;
 }
 
-- (YZPageContainerView *)containerView {
+- (KKPageContainerView *)containerView {
     if (!_containerView) {
-        _containerView = [[YZPageContainerView alloc] initWithFrame:CGRectZero collectionViewLayout:self.containerViewLayout];
+        _containerView = [[KKPageContainerView alloc] initWithFrame:CGRectZero collectionViewLayout:self.containerViewLayout];
         _containerView.dataSource = self;
         _containerView.delegate = self;
         _containerView.backgroundColor = [UIColor clearColor];
@@ -186,9 +186,9 @@
     return _containerView;
 }
 
-- (YZPageContainerViewLayout *)containerViewLayout {
+- (KKPageContainerViewLayout *)containerViewLayout {
     if (!_containerViewLayout) {
-        _containerViewLayout = [[YZPageContainerViewLayout alloc] init];
+        _containerViewLayout = [[KKPageContainerViewLayout alloc] init];
     }
     return _containerViewLayout;
 }

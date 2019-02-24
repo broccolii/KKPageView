@@ -13,14 +13,14 @@
 		A4506D2B1E55FD24009E7BEC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4506D291E55FD24009E7BEC /* Main.storyboard */; };
 		A4506D2D1E55FD24009E7BEC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A4506D2C1E55FD24009E7BEC /* Assets.xcassets */; };
 		A4506D301E55FD24009E7BEC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4506D2E1E55FD24009E7BEC /* LaunchScreen.storyboard */; };
-		A4506D3D1E55FDD3009E7BEC /* YZPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4506D3C1E55FDD3009E7BEC /* YZPageView.m */; };
-		A4506D4E1E55FE6C009E7BEC /* YZPageContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4506D491E55FE6C009E7BEC /* YZPageContainerView.m */; };
-		A4506D4F1E55FE6C009E7BEC /* YZPageViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A4506D4B1E55FE6C009E7BEC /* YZPageViewItem.m */; };
-		A4506D501E55FE6C009E7BEC /* YZPageContainerViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = A4506D4D1E55FE6C009E7BEC /* YZPageContainerViewLayout.m */; };
+		A4506D3D1E55FDD3009E7BEC /* KKPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4506D3C1E55FDD3009E7BEC /* KKPageView.m */; };
+		A4506D4E1E55FE6C009E7BEC /* KKPageContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4506D491E55FE6C009E7BEC /* KKPageContainerView.m */; };
+		A4506D4F1E55FE6C009E7BEC /* KKPageViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A4506D4B1E55FE6C009E7BEC /* KKPageViewItem.m */; };
+		A4506D501E55FE6C009E7BEC /* KKPageContainerViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = A4506D4D1E55FE6C009E7BEC /* KKPageContainerViewLayout.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A4506D1D1E55FD24009E7BEC /* YZPageView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YZPageView.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A4506D1D1E55FD24009E7BEC /* KKPageView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KKPageView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4506D211E55FD24009E7BEC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A4506D231E55FD24009E7BEC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A4506D241E55FD24009E7BEC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -30,17 +30,17 @@
 		A4506D2C1E55FD24009E7BEC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A4506D2F1E55FD24009E7BEC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A4506D311E55FD24009E7BEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A4506D3B1E55FDD3009E7BEC /* YZPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YZPageView.h; sourceTree = "<group>"; };
-		A4506D3C1E55FDD3009E7BEC /* YZPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YZPageView.m; sourceTree = "<group>"; };
-		A4506D481E55FE6C009E7BEC /* YZPageContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YZPageContainerView.h; sourceTree = "<group>"; };
-		A4506D491E55FE6C009E7BEC /* YZPageContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YZPageContainerView.m; sourceTree = "<group>"; };
-		A4506D4A1E55FE6C009E7BEC /* YZPageViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YZPageViewItem.h; sourceTree = "<group>"; };
-		A4506D4B1E55FE6C009E7BEC /* YZPageViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YZPageViewItem.m; sourceTree = "<group>"; };
-		A4506D4C1E55FE6C009E7BEC /* YZPageContainerViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YZPageContainerViewLayout.h; sourceTree = "<group>"; };
-		A4506D4D1E55FE6C009E7BEC /* YZPageContainerViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YZPageContainerViewLayout.m; sourceTree = "<group>"; };
-		A4506D891E56E323009E7BEC /* YZPageViewDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZPageViewDataSource.h; sourceTree = "<group>"; };
-		A4506D8A1E56E337009E7BEC /* YZPageViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZPageViewDelegate.h; sourceTree = "<group>"; };
-		A4D1B7EC1E58E5F400C5E569 /* YZPageTransitionAnimator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YZPageTransitionAnimator.h; sourceTree = "<group>"; };
+		A4506D3B1E55FDD3009E7BEC /* KKPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKPageView.h; sourceTree = "<group>"; };
+		A4506D3C1E55FDD3009E7BEC /* KKPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKPageView.m; sourceTree = "<group>"; };
+		A4506D481E55FE6C009E7BEC /* KKPageContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKPageContainerView.h; sourceTree = "<group>"; };
+		A4506D491E55FE6C009E7BEC /* KKPageContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKPageContainerView.m; sourceTree = "<group>"; };
+		A4506D4A1E55FE6C009E7BEC /* KKPageViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKPageViewItem.h; sourceTree = "<group>"; };
+		A4506D4B1E55FE6C009E7BEC /* KKPageViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKPageViewItem.m; sourceTree = "<group>"; };
+		A4506D4C1E55FE6C009E7BEC /* KKPageContainerViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKPageContainerViewLayout.h; sourceTree = "<group>"; };
+		A4506D4D1E55FE6C009E7BEC /* KKPageContainerViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKPageContainerViewLayout.m; sourceTree = "<group>"; };
+		A4506D891E56E323009E7BEC /* KKPageViewDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KKPageViewDataSource.h; sourceTree = "<group>"; };
+		A4506D8A1E56E337009E7BEC /* KKPageViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KKPageViewDelegate.h; sourceTree = "<group>"; };
+		A4D1B7EC1E58E5F400C5E569 /* KKPageTransitionAnimator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KKPageTransitionAnimator.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +58,7 @@
 			isa = PBXGroup;
 			children = (
 				A4506D371E55FDA6009E7BEC /* Resource */,
-				A4506D1F1E55FD24009E7BEC /* YZPageView */,
+				A4506D1F1E55FD24009E7BEC /* KKPageView */,
 				A4506D1E1E55FD24009E7BEC /* Products */,
 			);
 			sourceTree = "<group>";
@@ -66,12 +66,12 @@
 		A4506D1E1E55FD24009E7BEC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A4506D1D1E55FD24009E7BEC /* YZPageView.app */,
+				A4506D1D1E55FD24009E7BEC /* KKPageView.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A4506D1F1E55FD24009E7BEC /* YZPageView */ = {
+		A4506D1F1E55FD24009E7BEC /* KKPageView */ = {
 			isa = PBXGroup;
 			children = (
 				A4506D231E55FD24009E7BEC /* AppDelegate.h */,
@@ -84,7 +84,7 @@
 				A4506D311E55FD24009E7BEC /* Info.plist */,
 				A4506D201E55FD24009E7BEC /* Supporting Files */,
 			);
-			path = YZPageView;
+			path = KKPageView;
 			sourceTree = "<group>";
 		};
 		A4506D201E55FD24009E7BEC /* Supporting Files */ = {
@@ -98,35 +98,35 @@
 		A4506D371E55FDA6009E7BEC /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				A4506D471E55FE6C009E7BEC /* YZPageCollectionView */,
-				A4506D3B1E55FDD3009E7BEC /* YZPageView.h */,
-				A4506D3C1E55FDD3009E7BEC /* YZPageView.m */,
-				A4506D891E56E323009E7BEC /* YZPageViewDataSource.h */,
-				A4506D8A1E56E337009E7BEC /* YZPageViewDelegate.h */,
-				A4D1B7EC1E58E5F400C5E569 /* YZPageTransitionAnimator.h */,
+				A4506D471E55FE6C009E7BEC /* KKPageCollectionView */,
+				A4506D3B1E55FDD3009E7BEC /* KKPageView.h */,
+				A4506D3C1E55FDD3009E7BEC /* KKPageView.m */,
+				A4506D891E56E323009E7BEC /* KKPageViewDataSource.h */,
+				A4506D8A1E56E337009E7BEC /* KKPageViewDelegate.h */,
+				A4D1B7EC1E58E5F400C5E569 /* KKPageTransitionAnimator.h */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
 		};
-		A4506D471E55FE6C009E7BEC /* YZPageCollectionView */ = {
+		A4506D471E55FE6C009E7BEC /* KKPageCollectionView */ = {
 			isa = PBXGroup;
 			children = (
-				A4506D481E55FE6C009E7BEC /* YZPageContainerView.h */,
-				A4506D491E55FE6C009E7BEC /* YZPageContainerView.m */,
-				A4506D4A1E55FE6C009E7BEC /* YZPageViewItem.h */,
-				A4506D4B1E55FE6C009E7BEC /* YZPageViewItem.m */,
-				A4506D4C1E55FE6C009E7BEC /* YZPageContainerViewLayout.h */,
-				A4506D4D1E55FE6C009E7BEC /* YZPageContainerViewLayout.m */,
+				A4506D481E55FE6C009E7BEC /* KKPageContainerView.h */,
+				A4506D491E55FE6C009E7BEC /* KKPageContainerView.m */,
+				A4506D4A1E55FE6C009E7BEC /* KKPageViewItem.h */,
+				A4506D4B1E55FE6C009E7BEC /* KKPageViewItem.m */,
+				A4506D4C1E55FE6C009E7BEC /* KKPageContainerViewLayout.h */,
+				A4506D4D1E55FE6C009E7BEC /* KKPageContainerViewLayout.m */,
 			);
-			path = YZPageCollectionView;
+			path = KKPageCollectionView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A4506D1C1E55FD24009E7BEC /* YZPageView */ = {
+		A4506D1C1E55FD24009E7BEC /* KKPageView */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A4506D341E55FD25009E7BEC /* Build configuration list for PBXNativeTarget "YZPageView" */;
+			buildConfigurationList = A4506D341E55FD25009E7BEC /* Build configuration list for PBXNativeTarget "KKPageView" */;
 			buildPhases = (
 				A4506D191E55FD24009E7BEC /* Sources */,
 				A4506D1A1E55FD24009E7BEC /* Frameworks */,
@@ -136,9 +136,9 @@
 			);
 			dependencies = (
 			);
-			name = YZPageView;
+			name = KKPageView;
 			productName = YZPageView;
-			productReference = A4506D1D1E55FD24009E7BEC /* YZPageView.app */;
+			productReference = A4506D1D1E55FD24009E7BEC /* KKPageView.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -157,7 +157,7 @@
 					};
 				};
 			};
-			buildConfigurationList = A4506D181E55FD24009E7BEC /* Build configuration list for PBXProject "YZPageView" */;
+			buildConfigurationList = A4506D181E55FD24009E7BEC /* Build configuration list for PBXProject "KKPageView" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -170,7 +170,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A4506D1C1E55FD24009E7BEC /* YZPageView */,
+				A4506D1C1E55FD24009E7BEC /* KKPageView */,
 			);
 		};
 /* End PBXProject section */
@@ -194,11 +194,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				A4506D281E55FD24009E7BEC /* ViewController.m in Sources */,
-				A4506D501E55FE6C009E7BEC /* YZPageContainerViewLayout.m in Sources */,
-				A4506D4E1E55FE6C009E7BEC /* YZPageContainerView.m in Sources */,
+				A4506D501E55FE6C009E7BEC /* KKPageContainerViewLayout.m in Sources */,
+				A4506D4E1E55FE6C009E7BEC /* KKPageContainerView.m in Sources */,
 				A4506D251E55FD24009E7BEC /* AppDelegate.m in Sources */,
-				A4506D3D1E55FDD3009E7BEC /* YZPageView.m in Sources */,
-				A4506D4F1E55FE6C009E7BEC /* YZPageViewItem.m in Sources */,
+				A4506D3D1E55FDD3009E7BEC /* KKPageView.m in Sources */,
+				A4506D4F1E55FE6C009E7BEC /* KKPageViewItem.m in Sources */,
 				A4506D221E55FD24009E7BEC /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -320,7 +320,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = RJXPJ9T4QP;
-				INFOPLIST_FILE = YZPageView/Info.plist;
+				INFOPLIST_FILE = KKPageView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.broccoliii.YZPageView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -332,7 +332,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = RJXPJ9T4QP;
-				INFOPLIST_FILE = YZPageView/Info.plist;
+				INFOPLIST_FILE = KKPageView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.broccoliii.YZPageView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -342,7 +342,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A4506D181E55FD24009E7BEC /* Build configuration list for PBXProject "YZPageView" */ = {
+		A4506D181E55FD24009E7BEC /* Build configuration list for PBXProject "KKPageView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A4506D321E55FD24009E7BEC /* Debug */,
@@ -351,7 +351,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A4506D341E55FD25009E7BEC /* Build configuration list for PBXNativeTarget "YZPageView" */ = {
+		A4506D341E55FD25009E7BEC /* Build configuration list for PBXNativeTarget "KKPageView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A4506D351E55FD25009E7BEC /* Debug */,
