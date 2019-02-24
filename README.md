@@ -1,5 +1,5 @@
 
-## AdsPlayView
+## KKPageView
 A carousel view control based `UICollectionView`
 
 ## Requirements
@@ -16,7 +16,7 @@ pod 'AdsPlayView', '~> 1.0.0'
 
 ## Usage
 
-###init
+### init
 
 
 ``` swift	
